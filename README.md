@@ -12,7 +12,7 @@ CREATE TABLE location (
 
 ## Composite key
 
-In the table "location", the PRIMARY KEY is a composite of latitude and longitude and is then used as a foreign key in the tweets table
+The FOREIGN KEY in tweets table for location table PRIMARY KEY is composed of two table values latitude and longitude.
 
 ```postgresql
 CREATE TABLE tweets (
@@ -20,6 +20,7 @@ CREATE TABLE tweets (
     date date,
     hour time,
     uname text,
+    FOREIGN KEY (uname) REFERENCES users (uname),
     message text,
     favs bigint,
     rts bigint,
@@ -28,6 +29,8 @@ CREATE TABLE tweets (
     FOREIGN KEY (latitude, longitude) REFERENCES location (latitude, longitude),
     picture text,
     listed bigint,
+    lang text,
+    url text,
     PRIMARY KEY(id)
 );
 ```
